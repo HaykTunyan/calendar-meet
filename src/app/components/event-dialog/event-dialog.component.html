@@ -1,0 +1,21 @@
+
+<div class="modal-event">
+<h2 mat-dialog-title>Add Event</h2>
+<form [formGroup]="eventForm" (ngSubmit)="saveEvent()">
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Event Title</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <div class="buttons">
+        <button mat-button (click)="close()">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="eventForm.invalid">Save</button>
+    </div>
+</form>
+
+</div>

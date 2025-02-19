@@ -1,0 +1,46 @@
+<form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()" class="appointment-form">
+  <!-- Title -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" required />
+    <mat-error *ngIf="appointmentForm.get('title')?.invalid && appointmentForm.get('title')?.touched">
+      Title is required.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Date Picker -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="date" [min]="minDate" required />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="appointmentForm.get('date')?.invalid && appointmentForm.get('date')?.touched">
+      Please select a valid date.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Time Picker -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Time</mat-label>
+    <input matInput type="time" formControlName="time" [min]="minTime" required />
+    <mat-error *ngIf="appointmentForm.get('time')?.invalid && appointmentForm.get('time')?.touched">
+      Please select a valid time.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Description -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button mat-stroked-button color="warn" type="button" (click)="onCancel()" class="cancel-btn">
+      Cancel
+    </button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!appointmentForm.valid" class="save-btn">
+      Save
+    </button>
+  </div>
+</form>

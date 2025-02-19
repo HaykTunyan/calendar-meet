@@ -1,0 +1,23 @@
+<div class="drag-drop-container">
+  <div cdkDropList [cdkDropListData]="appointments" (cdkDropListDropped)="drop($event)" class="appointment-list">
+    <div *ngFor="let appointment of appointments" class="appointment-item" cdkDrag>
+      
+      <!-- Appointment Details with ID -->
+      <span class="appointment-info">
+        <strong>ID: {{ appointment.id }}</strong> <br>
+        <strong>{{ appointment.title }}</strong> <br>
+        <!-- <small>{{ appointment.time }} | {{ appointment.date }}</small> -->
+      </span>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button mat-icon-button color="accent" (click)="editAppointment(appointment)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteAppointment(appointment.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
